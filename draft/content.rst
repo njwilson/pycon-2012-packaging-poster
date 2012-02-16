@@ -1,7 +1,7 @@
 INTRODUCTION TO PACKAGING
 =========================
 
-TODO: Introduction to packaging in general.
+TODO: Introduction to packaging in general
 
 
 PAST/PRESENT
@@ -10,7 +10,7 @@ PAST/PRESENT
 Python's Packaging Ecosystem
 ----------------------------
 
-TODO: Overview of the current state of Python packaging.
+TODO: Overview of the current state of Python packaging
 
 
 FUTURE
@@ -52,11 +52,11 @@ Highlights:
 New Standards
 -------------
 
-PEP 376 -- Database of Installed Python Distributions
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+PEP 376 -- "Database of Installed Python Distributions"
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 * Goal: Define a standard database of installed Python distributions so package
-  managers are interoperable.
+  managers are interoperable
 
 * Motivation:
 
@@ -64,9 +64,9 @@ PEP 376 -- Database of Installed Python Distributions
     ``setuptools``/``distribute``/``easy_install``, and ``pip``) each have
     their own method of tracking installed distributions
 
-  - Most of the existing tools don't supporting uninstallation
+  - Most of the existing tools don't support uninstallation
 
-  - No common API exists for querying installation distributions
+  - No common API exists for querying installed distributions
 
 * This PEP defines a new standard, a ``.dist-info`` directory for each
   distribution with the following files:
@@ -77,8 +77,8 @@ PEP 376 -- Database of Installed Python Distributions
 
   - ``INSTALLER`` - Name of the installer that installed the project
 
-  - ``REQUESTED`` - If missing, indicates the project was installed to satisfy
-    a dependency
+  - ``REQUESTED`` - Indicates whether the project was installed explicitly or
+    to satisfy a dependency
 
 * Sample directory structure::
 
@@ -95,8 +95,8 @@ PEP 376 -- Database of Installed Python Distributions
         |-- REQUESTED
 
 
-PEP 345 -- Metadata for Python Software Packages 1.2
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+PEP 345 -- "Metadata for Python Software Packages 1.2"
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 * Goal: Define new metadata for distributions to better specify dependencies
   and relationships with other distributions
@@ -104,13 +104,14 @@ PEP 345 -- Metadata for Python Software Packages 1.2
 * Motivation:
 
   - Previous standards specified dependencies on Python *modules*, but people
-    don't distribute *modules*; they distribute *distributions*.
+    don't distribute *modules*; they distribute *distributions*
 
   - ``setuptools`` and ``distribute`` support dependencies on distributions
-    (via ``install_requires``). This works, but it's not standardized.
+    (via ``install_requires``), but it's not standardized
 
-  - Current methods require running code to calculate dependencies based on
-    operating system, platform, and Python version/implementation.
+  - Current methods require running code in ``setup.py`` to calculate
+    dependencies based on operating system, platform, and Python
+    version/implementation
 
 * Primary new fields:
 
@@ -118,15 +119,15 @@ PEP 345 -- Metadata for Python Software Packages 1.2
   | Field Name              | Description                                           | Examples                                     |
   +=========================+=======================================================+==============================================+
   | | ``Requires-Python``   | Python version(s) that the distribution is guaranteed | | ``Requires-Python: 2.5``                   |
-  |                         | to be compatible with.                                | | ``Requires-Python: >2.1``                  |
+  |                         | to be compatible with                                 | | ``Requires-Python: >2.1``                  |
   |                         |                                                       | | ``Requires-Python: >=2.3.4``               |
   |                         |                                                       | | ``Requires-Python: >=2.5,<2.7``            |
   +-------------------------+-------------------------------------------------------+----------------------------------------------+
   | | ``Requires-External`` | External system dependencies (arbitrary string used   | | ``Requires-External: C``                   |
-  |                         | as a hint to downstream project maintainers).         | | ``Requires-External: libpng (>=1.5)``      |
+  |                         | as a hint to downstream project maintainers)          | | ``Requires-External: libpng (>=1.5)``      |
   +-------------------------+-------------------------------------------------------+----------------------------------------------+
   | | ``Requires-Dist``     | Names of Python distributions required, provided, and | | ``Requires-Dist: pkginfo``                 |
-  | | ``Provides-Dist``     | obsoleted by the distribution.                        | | ``Requires-Dist: zope.interface (>3.5.0)`` |
+  | | ``Provides-Dist``     | obsoleted by the distribution                         | | ``Requires-Dist: zope.interface (>3.5.0)`` |
   | | ``Obsoletes-Dist``    |                                                       | | ``Provides-Dist: virtual_package``         |
   |                         |                                                       | | ``Obsoletes-Dist: OtherProject (<3.0)``    |
   +-------------------------+-------------------------------------------------------+----------------------------------------------+
@@ -134,8 +135,8 @@ PEP 345 -- Metadata for Python Software Packages 1.2
 * Other new fields: ``Project-URL``, ``Maintainer``, and ``Maintainer-email``
 
 
-PEP 386 -- Changing the version comparison module in Distutils
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+PEP 386 -- "Changing the version comparison module in Distutils"
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 * Goal: Specify a common standard for version numbers
 
@@ -159,7 +160,7 @@ PEP 386 -- Changing the version comparison module in Distutils
 
 * To support interoperability with other versioning schemes, a
   ``suggest_normalized_version()`` method is provided to turn a non-compliant
-  into a compliant version.
+  version into a compliant version
 
 
 New Packaging Library: ``packaging``/``distutils2``
@@ -197,7 +198,7 @@ New Packaging Library: ``packaging``/``distutils2``
      packages = sample1
      # ...
 
-  - The only reason to provide a ``setup.py`` is backwards compatibility.
+  - The only reason to provide a ``setup.py`` is backwards compatibility
 
 * Hooks are provided to run additional code before/after commands (e.g., to
   perform additional checks prior to running the *install* command)
@@ -223,5 +224,5 @@ Tool Support
   - Will be updated to use ``packaging``/``distutils`` instead of
     ``setuptools``
 
-  - Will continue to provide additional functionality (e.g., SCM support,
-    requirements files)
+  - Will continue to provide additional functionality (SCM support,
+    requirements files, etc.)
